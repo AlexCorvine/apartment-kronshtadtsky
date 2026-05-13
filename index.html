@@ -1,0 +1,1305 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Сдаётся 1-комн. квартира, 35 м² · Кронштадтский б-р, 24к3</title>
+  <style>
+    :root {
+      --night: #0f1624;
+      --navy: #1a2238;
+      --blue-mid: #243050;
+      --gold: #c9a84c;
+      --gold-light: #e8c96a;
+      --cream: #f5f1ea;
+      --white: #ffffff;
+      --text-muted: #8fa3bf;
+      --radius: 12px;
+      --transition: 0.3s ease;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+      background: var(--night);
+      color: var(--white);
+      line-height: 1.6;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 40px;
+      background: rgba(15, 22, 36, 0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(201, 168, 76, 0.15);
+    }
+
+    .nav-brand {
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    .nav-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 9px 22px;
+      border-radius: 50px;
+      background: var(--gold);
+      color: var(--night);
+      font-size: 13px;
+      font-weight: 700;
+      text-decoration: none;
+      letter-spacing: 0.04em;
+      transition: background var(--transition), transform var(--transition);
+    }
+    .nav-cta:hover { background: var(--gold-light); transform: translateY(-1px); }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      height: 100vh;
+      min-height: 600px;
+      display: flex;
+      align-items: flex-end;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url('images/kitchen-2.jpg');
+      background-size: cover;
+      background-position: center 30%;
+      transform: scale(1.05);
+      transition: transform 8s ease;
+    }
+    .hero:hover .hero-bg { transform: scale(1); }
+
+    /* fallback gradient when image not loaded */
+    .hero-bg::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, #0f1624 0%, #1a2238 40%, #243050 70%, #1a1f3a 100%);
+      opacity: 0;
+    }
+    .hero-bg:not([style*="url"]) { background-image: none; }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to top,
+        rgba(10, 14, 26, 0.98) 0%,
+        rgba(10, 14, 26, 0.65) 40%,
+        rgba(10, 14, 26, 0.15) 100%
+      );
+    }
+
+    .hero-content {
+      position: relative;
+      padding: 0 40px 72px;
+      max-width: 820px;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      padding: 8px 16px;
+      border-radius: 50px;
+      border: 1px solid var(--gold);
+      background: rgba(15, 22, 36, 0.82);
+      color: var(--white);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+      margin-bottom: 20px;
+      backdrop-filter: blur(10px);
+    }
+
+    .hero-title {
+      font-size: clamp(36px, 6vw, 72px);
+      font-weight: 800;
+      line-height: 1.08;
+      letter-spacing: -0.02em;
+      margin-bottom: 16px;
+    }
+
+    .hero-title span { color: var(--gold); }
+
+    .hero-sub {
+      font-size: clamp(15px, 2vw, 18px);
+      color: var(--text-muted);
+      margin-bottom: 14px;
+      max-width: 480px;
+    }
+
+    .hero-address {
+      display: inline-flex;
+      align-items: center;
+      padding: 9px 14px;
+      border-radius: 12px;
+      background: rgba(15, 22, 36, 0.78);
+      border: 1px solid rgba(201, 168, 76, 0.22);
+      color: var(--white);
+      font-size: 14px;
+      font-weight: 650;
+      margin-bottom: 18px;
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.24);
+      backdrop-filter: blur(10px);
+    }
+
+    .hero-transport {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 34px;
+    }
+
+    .hero-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(36, 48, 80, 0.78);
+      border: 1px solid rgba(201, 168, 76, 0.16);
+      color: #c8d8ec;
+      font-size: 13px;
+      backdrop-filter: blur(8px);
+    }
+
+    .hero-chip strong {
+      color: var(--white);
+      font-weight: 700;
+    }
+
+    .hero-price {
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 12px;
+    }
+    .price-val {
+      font-size: clamp(32px, 5vw, 52px);
+      font-weight: 800;
+      color: var(--gold-light);
+      letter-spacing: -0.02em;
+      line-height: 1;
+    }
+    .price-note {
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    .hero-lease {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 26px;
+      color: #c8d8ec;
+      font-size: 13px;
+    }
+
+    .hero-lease span {
+      padding: 7px 11px;
+      border-radius: 999px;
+      background: rgba(15, 22, 36, 0.54);
+      border: 1px solid rgba(201, 168, 76, 0.14);
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: 32px;
+      flex-wrap: wrap;
+    }
+
+    .stat {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .stat-val {
+      font-size: 26px;
+      font-weight: 800;
+      color: var(--white);
+      letter-spacing: -0.02em;
+    }
+    .stat-label {
+      font-size: 12px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    /* ── SECTIONS ── */
+    section { padding: 80px 40px; }
+
+    .section-tag {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 12px;
+    }
+
+    .section-title {
+      font-size: clamp(26px, 4vw, 42px);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 40px;
+      line-height: 1.15;
+    }
+
+    /* ── GALLERY ── */
+    .gallery { background: var(--navy); }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      grid-auto-rows: 220px;
+      gap: 10px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .photo {
+      border-radius: var(--radius);
+      overflow: hidden;
+      cursor: zoom-in;
+      position: relative;
+      background: var(--blue-mid);
+    }
+    .photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+      display: block;
+    }
+    .photo:hover img { transform: scale(1.04); }
+
+    .photo::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.3) 0%, transparent 50%);
+      opacity: 0;
+      transition: opacity var(--transition);
+    }
+    .photo:hover::after { opacity: 1; }
+
+    .photo-1 { grid-column: span 2; grid-row: span 2; }
+    .photo-2,
+    .photo-3 { grid-column: span 2; }
+
+    .terms-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 0;
+    }
+
+    .term-card {
+      min-height: 98px;
+      border-radius: var(--radius);
+      padding: 14px;
+      background: var(--blue-mid);
+      border: 1px solid rgba(201, 168, 76, 0.14);
+    }
+
+    .term-card .svg-icon {
+      margin-bottom: 8px;
+    }
+
+    .term-label {
+      color: var(--text-muted);
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 4px;
+    }
+
+    .term-value {
+      color: var(--white);
+      font-size: 17px;
+      font-weight: 800;
+      letter-spacing: -0.01em;
+    }
+
+    .term-note {
+      margin-top: 6px;
+      color: #b0c0d8;
+      font-size: 12px;
+      line-height: 1.45;
+    }
+
+    /* ── ABOUT ── */
+    .about {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.05fr) minmax(340px, 0.95fr);
+      gap: 44px;
+      align-items: start;
+    }
+
+    .about-section {
+      padding-top: 64px;
+      padding-bottom: 64px;
+    }
+
+    .about .section-title {
+      margin-bottom: 22px;
+    }
+
+    .about-text p {
+      color: #b0c0d8;
+      font-size: 15px;
+      line-height: 1.7;
+      margin-bottom: 14px;
+    }
+
+    .specs-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .specs-column {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .spec-card {
+      background: var(--blue-mid);
+      border-radius: var(--radius);
+      padding: 15px;
+      border: 1px solid rgba(201, 168, 76, 0.12);
+      transition: border-color var(--transition);
+    }
+    .spec-card:hover { border-color: rgba(201, 168, 76, 0.35); }
+
+    .spec-icon { margin-bottom: 10px; }
+    .spec-val {
+      font-size: 18px;
+      font-weight: 800;
+      letter-spacing: -0.01em;
+    }
+    .spec-name { font-size: 12px; color: var(--text-muted); margin-top: 2px; }
+
+    /* ── AMENITIES ── */
+    .amenities { background: var(--navy); }
+
+    .amenities-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .amenities-list {
+      display: flex;
+      flex-direction: column;
+      list-style: none;
+      max-width: 520px;
+    }
+
+    .amenity {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 11px 0;
+      background: none;
+      border: none;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      font-size: 15px;
+      color: #c8d8ec;
+    }
+    .amenity.amenity-hidden { display: none; }
+    .amenity.amenity-hidden.revealed { display: flex; }
+    .amenity-icon {
+      flex-shrink: 0;
+      width: 28px;
+      height: 28px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: none;
+      color: var(--gold-light);
+    }
+    .amenities-toggle {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: none;
+      border: none;
+      color: #4dabf7;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      padding: 14px 0 0;
+      font-family: inherit;
+    }
+
+    .svg-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--gold-light);
+    }
+
+    .svg-icon svg {
+      width: 22px;
+      height: 22px;
+      stroke: currentColor;
+      stroke-width: 1.8;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      fill: none;
+    }
+
+    .spec-icon .svg-icon svg { width: 28px; height: 28px; }
+    .transport-badge .svg-icon svg,
+    .infra-item .svg-icon svg,
+    .contact-card-icon .svg-icon svg { width: 24px; height: 24px; }
+
+    /* ── LOCATION ── */
+    .location-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .location-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: start;
+    }
+
+    .transport-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 32px;
+    }
+
+    .transport-item {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-size: 15px;
+    }
+
+    .transport-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      font-size: 16px;
+      flex-shrink: 0;
+    }
+    .metro-badge { background: #e63946; color: var(--white); font-weight: 800; }
+    .walk-badge { background: var(--blue-mid); }
+
+    .infra-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .infra-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 14px;
+      background: var(--blue-mid);
+      border-radius: 8px;
+      font-size: 13px;
+      color: #b0c0d8;
+    }
+
+    .map-placeholder {
+      border-radius: var(--radius);
+      overflow: hidden;
+      height: 320px;
+      background: var(--blue-mid);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid rgba(201, 168, 76, 0.15);
+    }
+
+    .map-placeholder iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+      filter: invert(90%) hue-rotate(180deg) saturate(0.8);
+    }
+
+    /* ── CONTACT ── */
+    .contact { background: var(--night); }
+
+    .contact-inner {
+      max-width: 680px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .contact-inner .section-title { margin-bottom: 16px; }
+
+    .contact-sub {
+      color: var(--text-muted);
+      font-size: 16px;
+      margin-bottom: 48px;
+    }
+
+    .contact-cards {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .contact-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      padding: 28px 40px;
+      background: var(--navy);
+      border-radius: var(--radius);
+      border: 1px solid rgba(201, 168, 76, 0.2);
+      text-decoration: none;
+      color: var(--white);
+      min-width: 200px;
+      transition: border-color var(--transition), transform var(--transition), background var(--transition);
+    }
+    .contact-card:hover {
+      border-color: var(--gold);
+      transform: translateY(-4px);
+      background: var(--blue-mid);
+    }
+
+    .contact-card-icon {
+      line-height: 1;
+    }
+    .contact-card-label {
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+    .contact-card-value {
+      font-size: 17px;
+      font-weight: 700;
+    }
+    .contact-card.tg { border-color: rgba(38, 161, 228, 0.3); }
+    .contact-card.tg:hover { border-color: #26a1e4; }
+    .contact-card.tg .contact-card-icon { color: #26a1e4; }
+
+    /* ── FOOTER ── */
+    footer {
+      text-align: center;
+      padding: 32px 40px;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    /* ── LIGHTBOX ── */
+    .lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 999;
+      background: rgba(5, 8, 18, 0.96);
+      align-items: center;
+      justify-content: center;
+      cursor: zoom-out;
+    }
+    .lightbox.active { display: flex; }
+    .lightbox img {
+      max-width: 90vw;
+      max-height: 90vh;
+      object-fit: contain;
+      border-radius: 8px;
+    }
+    .lightbox-close {
+      position: absolute;
+      top: 20px;
+      right: 28px;
+      font-size: 32px;
+      color: var(--white);
+      cursor: pointer;
+      line-height: 1;
+      opacity: 0.6;
+      transition: opacity var(--transition);
+    }
+    .lightbox-close:hover { opacity: 1; }
+    .lightbox-prev, .lightbox-next {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.18);
+      color: var(--white);
+      font-size: 36px;
+      line-height: 1;
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background var(--transition);
+      z-index: 1001;
+      user-select: none;
+    }
+    .lightbox-prev { left: 20px; }
+    .lightbox-next { right: 20px; }
+    .lightbox-prev:hover, .lightbox-next:hover { background: rgba(255,255,255,0.22); }
+    .lightbox-counter {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: rgba(255,255,255,0.5);
+      font-size: 13px;
+      letter-spacing: 0.05em;
+    }
+    @media (max-width: 768px) {
+      .lightbox-prev { left: 8px; }
+      .lightbox-next { right: 8px; }
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      nav { padding: 14px 20px; }
+      .nav-brand { font-size: 11px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 55%; }
+
+      .hero-content { padding: 0 20px 60px; }
+      .hero-stats { gap: 20px; }
+
+      section { padding: 60px 20px; }
+
+      .gallery { padding-left: 0; padding-right: 0; }
+      .gallery .section-tag { padding: 0 20px; }
+      .gallery-grid {
+        display: flex;
+        flex-direction: row;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        gap: 10px;
+        padding: 0 20px;
+      }
+      .gallery-grid::-webkit-scrollbar { display: none; }
+      .photo {
+        flex: 0 0 82vw;
+        height: 260px;
+        scroll-snap-align: center;
+      }
+      .photo-1, .photo-2, .photo-3 { grid-column: unset; grid-row: unset; }
+
+      .about-grid { grid-template-columns: 1fr; gap: 36px; }
+      .location-grid { grid-template-columns: 1fr; }
+      .infra-grid { grid-template-columns: 1fr 1fr; }
+      .contact-cards { flex-direction: column; align-items: stretch; }
+    }
+
+    @media (max-width: 520px) {
+      .terms-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ── MOBILE-ONLY ELEMENTS (hidden on desktop) ── */
+    .m-slider-wrap, .m-info-wrap, .m-specs-wrap, .m-cta-bar { display: none; }
+
+    @media (max-width: 768px) {
+      .hero { display: none !important; }
+      .gallery { display: none !important; }
+      body { padding-bottom: 78px; }
+
+      /* Mobile slider */
+      .m-slider-wrap { display: block; margin-top: 54px; }
+      .m-slider {
+        display: flex;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        height: 280px;
+        background: var(--navy);
+      }
+      .m-slider::-webkit-scrollbar { display: none; }
+      .m-slide { flex: 0 0 100%; flex-shrink: 0; scroll-snap-align: start; cursor: zoom-in; }
+      .m-slide img { width: 100%; height: 100%; object-fit: cover; display: block; }
+      .m-slider-counter {
+        text-align: right;
+        padding: 6px 14px;
+        font-size: 12px;
+        color: var(--text-muted);
+        background: var(--navy);
+        letter-spacing: 0.04em;
+      }
+
+      /* Mobile info */
+      .m-info-wrap { display: block; padding: 16px 20px 4px; background: var(--night); }
+      .m-badge {
+        display: inline-block; padding: 4px 10px; border-radius: 50px;
+        border: 1px solid rgba(201, 168, 76, 0.45); font-size: 11px;
+        color: var(--gold); font-weight: 700; letter-spacing: 0.06em; margin-bottom: 10px;
+      }
+      .m-price { font-size: 28px; font-weight: 800; color: var(--gold-light); letter-spacing: -0.02em; margin-bottom: 2px; }
+      .m-price-per { font-size: 15px; font-weight: 400; }
+      .m-price-note { font-size: 12px; color: var(--text-muted); margin-bottom: 14px; }
+      .m-title { font-size: 20px; font-weight: 800; line-height: 1.25; margin-bottom: 6px; }
+      .m-address { font-size: 13px; color: var(--text-muted); margin-bottom: 8px; }
+      .m-maps-link {
+        display: inline-flex; align-items: center; gap: 5px;
+        font-size: 13px; color: #4dabf7; text-decoration: none; margin-bottom: 16px; font-weight: 600;
+      }
+      .m-transport { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px; }
+      .m-chip {
+        padding: 5px 10px; border-radius: 999px; background: var(--blue-mid);
+        font-size: 12px; color: #c8d8ec; border: 1px solid rgba(255,255,255,0.06);
+      }
+      .m-facts {
+        display: flex;
+        border-top: 1px solid rgba(255,255,255,0.07);
+        border-bottom: 1px solid rgba(255,255,255,0.07);
+        margin: 0 -20px;
+      }
+      .m-fact { flex: 1; text-align: center; padding: 12px 4px; border-right: 1px solid rgba(255,255,255,0.07); }
+      .m-fact:last-child { border-right: none; }
+      .m-fact-val { font-size: 18px; font-weight: 800; display: block; }
+      .m-fact-label { font-size: 10px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.06em; display: block; margin-top: 2px; }
+
+      /* Mobile specs */
+      .m-specs-wrap { display: block; padding: 0 20px 20px; background: var(--night); }
+      .m-specs-title { font-size: 18px; font-weight: 800; padding: 20px 0 4px; letter-spacing: -0.01em; }
+      .m-specs-group-title {
+        font-size: 11px; font-weight: 700; color: var(--gold);
+        text-transform: uppercase; letter-spacing: 0.12em;
+        padding: 16px 0 8px; border-bottom: 1px solid rgba(255,255,255,0.06);
+      }
+      .m-spec-row {
+        display: flex; justify-content: space-between; align-items: center;
+        padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.05); font-size: 14px;
+      }
+      .m-spec-key { color: var(--text-muted); }
+      .m-spec-val { font-weight: 600; text-align: right; padding-left: 12px; }
+      .specs-column { display: none; }
+
+      /* Sticky CTA bar */
+      .m-cta-bar {
+        position: fixed; bottom: 0; left: 0; right: 0; z-index: 200;
+        display: flex; gap: 10px; padding: 10px 16px 14px;
+        background: rgba(15, 22, 36, 0.96); backdrop-filter: blur(12px);
+        border-top: 1px solid rgba(255,255,255,0.08);
+      }
+      .m-cta-bar a {
+        flex: 1; display: flex; align-items: center; justify-content: center;
+        gap: 8px; padding: 14px; border-radius: 14px; font-size: 16px;
+        font-weight: 700; text-decoration: none;
+      }
+      .m-cta-call { background: #27ae60; color: #fff; }
+      .m-cta-write { background: #2980b9; color: #fff; }
+      .m-cta-bar svg { width: 18px; height: 18px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+      .nav-cta { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<svg aria-hidden="true" style="position:absolute;width:0;height:0;overflow:hidden">
+  <symbol id="icon-area" viewBox="0 0 24 24"><path d="M4 5h15v15H4z"/><path d="M8 5v4H4"/><path d="M15 20v-4h4"/></symbol>
+  <symbol id="icon-kitchen" viewBox="0 0 24 24"><path d="M5 4h14v16H5z"/><path d="M9 4v16"/><path d="M13 8h2"/><path d="M13 14h2"/></symbol>
+  <symbol id="icon-building" viewBox="0 0 24 24"><path d="M5 21V4h14v17"/><path d="M9 8h2M13 8h2M9 12h2M13 12h2M9 16h2M13 16h2"/><path d="M3 21h18"/></symbol>
+  <symbol id="icon-elevator" viewBox="0 0 24 24"><path d="M6 3h12v18H6z"/><path d="M10 8l2-2 2 2"/><path d="M10 16l2 2 2-2"/><path d="M9 12h6"/></symbol>
+  <symbol id="icon-car" viewBox="0 0 24 24"><path d="M5 16l1.5-5h11L19 16"/><path d="M4 16h16v4H4z"/><path d="M7 20v1M17 20v1"/><path d="M8 13h8"/></symbol>
+  <symbol id="icon-walk" viewBox="0 0 24 24"><circle cx="12" cy="4" r="2"/><path d="M10 9l4 2 1 4"/><path d="M11 11l-2 4-3 4"/><path d="M14 15l4 4"/></symbol>
+  <symbol id="icon-metro" viewBox="0 0 24 24"><path d="M5 19l4-14h2l1 7 1-7h2l4 14"/><path d="M7 15h10"/></symbol>
+  <symbol id="icon-snow" viewBox="0 0 24 24"><path d="M12 3v18M5 7l14 10M19 7L5 17"/><path d="M8 5l4 3 4-3M8 19l4-3 4 3"/></symbol>
+  <symbol id="icon-dishwasher" viewBox="0 0 24 24"><path d="M6 3h12v18H6z"/><path d="M6 8h12"/><circle cx="12" cy="14" r="3"/><path d="M9 5h.01M12 5h.01"/></symbol>
+  <symbol id="icon-oven" viewBox="0 0 24 24"><path d="M5 4h14v16H5z"/><path d="M5 9h14"/><path d="M9 6h.01M12 6h.01M15 6h.01"/><path d="M9 13h6v4H9z"/></symbol>
+  <symbol id="icon-warm" viewBox="0 0 24 24"><path d="M7 17c2-2 2-4 0-6M12 17c2-2 2-4 0-6M17 17c2-2 2-4 0-6"/><path d="M5 21h14"/></symbol>
+  <symbol id="icon-shower" viewBox="0 0 24 24"><path d="M6 11V8a5 5 0 0 1 10 0"/><path d="M16 8h2v4h-6V8z"/><path d="M10 16h.01M14 16h.01M18 16h.01M12 20h.01M16 20h.01"/></symbol>
+  <symbol id="icon-washer" viewBox="0 0 24 24"><path d="M6 3h12v18H6z"/><path d="M6 8h12"/><circle cx="12" cy="15" r="3.5"/><path d="M9 5h.01"/></symbol>
+  <symbol id="icon-bed" viewBox="0 0 24 24"><path d="M4 12V6"/><path d="M4 12h16v6"/><path d="M4 18h16"/><path d="M8 10h4a2 2 0 0 1 2 2"/></symbol>
+  <symbol id="icon-sofa" viewBox="0 0 24 24"><path d="M6 11V8a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v3"/><path d="M4 13h16v5H4z"/><path d="M6 18v2M18 18v2"/></symbol>
+  <symbol id="icon-sound" viewBox="0 0 24 24"><path d="M4 10v4h4l5 4V6l-5 4z"/><path d="M18 9l3 6M21 9l-3 6"/></symbol>
+  <symbol id="icon-fridge" viewBox="0 0 24 24"><path d="M8 3h8v18H8z"/><path d="M8 10h8"/><path d="M11 6v1M11 13v2"/></symbol>
+  <symbol id="icon-safe" viewBox="0 0 24 24"><path d="M12 3l8 4v5c0 5-3.4 8-8 9-4.6-1-8-4-8-9V7z"/><path d="M9 12l2 2 4-5"/></symbol>
+  <symbol id="icon-playground" viewBox="0 0 24 24"><path d="M5 19h14"/><path d="M7 19l5-12 5 12"/><path d="M9 14h6"/><path d="M12 7h5"/></symbol>
+  <symbol id="icon-shop" viewBox="0 0 24 24"><path d="M4 10h16l-1-5H5z"/><path d="M6 10v10h12V10"/><path d="M9 20v-5h6v5"/></symbol>
+  <symbol id="icon-pharmacy" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/><path d="M7 7h10v10H7z"/></symbol>
+  <symbol id="icon-school" viewBox="0 0 24 24"><path d="M3 10l9-5 9 5-9 5z"/><path d="M7 12v5c3 2 7 2 10 0v-5"/></symbol>
+  <symbol id="icon-tv" viewBox="0 0 24 24"><path d="M5 6h14v10H5z"/><path d="M9 20h6"/><path d="M12 16v4"/></symbol>
+  <symbol id="icon-wifi" viewBox="0 0 24 24"><path d="M5 10a11 11 0 0 1 14 0"/><path d="M8 14a6 6 0 0 1 8 0"/><path d="M12 18h.01"/></symbol>
+  <symbol id="icon-phone" viewBox="0 0 24 24"><path d="M7 4l3 3-2 3c1.2 2.4 3.1 4.3 5.5 5.5l3-2 3 3-2 3c-6.5-.2-12.3-6-12.5-12.5z"/></symbol>
+  <symbol id="icon-telegram" viewBox="0 0 24 24"><path d="M21 4L3 11l7 2 2 7z"/><path d="M10 13l11-9"/></symbol>
+</svg>
+
+<!-- MOBILE SLIDER (shown only on mobile) -->
+<div class="m-slider-wrap">
+  <div class="m-slider" id="m-slider">
+    <div class="m-slide" onclick="openLightbox('images/bedroom-1.jpg')"><img src="images/bedroom-1.jpg" alt="Жилая комната с двуспальной кроватью"></div>
+    <div class="m-slide" onclick="openLightbox('images/living-1.jpg')"><img src="images/living-1.jpg" alt="Рабочая зона у окна с выходом на лоджию"></div>
+    <div class="m-slide" onclick="openLightbox('images/bedroom-2.jpg')"><img src="images/bedroom-2.jpg" alt="Зона хранения и кондиционер"></div>
+    <div class="m-slide" onclick="openLightbox('images/kitchen-1.jpg')"><img src="images/kitchen-1.jpg" alt="Кухня с варочной панелью и стиральной машиной"></div>
+    <div class="m-slide" onclick="openLightbox('images/kitchen-2.jpg')"><img src="images/kitchen-2.jpg" alt="Кухня — обеденная зона"></div>
+    <div class="m-slide" onclick="openLightbox('images/kitchen-3.jpg')"><img src="images/kitchen-3.jpg" alt="Кухня с холодильником и духовым шкафом"></div>
+    <div class="m-slide" onclick="openLightbox('images/bathroom-2.jpg')"><img src="images/bathroom-2.jpg" alt="Совмещённый санузел с ванной"></div>
+    <div class="m-slide" onclick="openLightbox('images/bathroom-3.jpg')"><img src="images/bathroom-3.jpg" alt="Ванна"></div>
+    <div class="m-slide" onclick="openLightbox('images/bathroom-1.jpg')"><img src="images/bathroom-1.jpg" alt="Санузел"></div>
+    <div class="m-slide" onclick="openLightbox('images/wardrobe-1.jpg')"><img src="images/wardrobe-1.jpg" alt="Гардеробная — вешалки и стеллажи"></div>
+    <div class="m-slide" onclick="openLightbox('images/wardrobe-2.jpg')"><img src="images/wardrobe-2.jpg" alt="Гардеробная — места для хранения"></div>
+    <div class="m-slide" onclick="openLightbox('images/wardrobe-3.jpg')"><img src="images/wardrobe-3.jpg" alt="Гардеробная — органайзеры"></div>
+    <div class="m-slide" onclick="openLightbox('images/entry-1.jpg')"><img src="images/entry-1.jpg" alt="Прихожая с вешалкой и обувницей"></div>
+    <div class="m-slide" onclick="openLightbox('images/entry-2.jpg')"><img src="images/entry-2.jpg" alt="Прихожая — общий вид"></div>
+<div class="m-slide" onclick="openLightbox('images/neighborhood-pond-2.png')"><img src="images/neighborhood-pond-2.png" alt="Вид на пруд и зелёную зону"></div>
+  </div>
+  <div class="m-slider-counter" id="m-slider-counter">1 из 16</div>
+</div>
+
+<!-- MOBILE INFO (shown only on mobile) -->
+<div class="m-info-wrap">
+  <div class="m-badge">Сдаётся · Без комиссии</div>
+  <div class="m-price">45 000 ₽<span class="m-price-per"> / мес</span></div>
+  <div class="m-price-note">+ счётчики (~4 000 ₽) + интернет</div>
+  <div class="m-title">1-комн. квартира, 35 м²</div>
+  <div class="m-address">Кронштадтский бульвар, 24к3, Москва</div>
+  <a class="m-maps-link" href="https://maps.google.com/?q=Кронштадтский+бульвар+24к3+Москва" target="_blank" rel="noopener">
+    <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+    Показать на карте →
+  </a>
+  <div class="m-transport">
+    <span class="m-chip">м. Водный стадион — 10 мин.</span>
+    <span class="m-chip">МЦК Коптево — 10 мин. пешком</span>
+  </div>
+  <div class="m-facts">
+    <div class="m-fact"><span class="m-fact-val">35 м²</span><span class="m-fact-label">Общая</span></div>
+    <div class="m-fact"><span class="m-fact-val">19 м²</span><span class="m-fact-label">Жилая</span></div>
+    <div class="m-fact"><span class="m-fact-val">10 м²</span><span class="m-fact-label">Кухня</span></div>
+    <div class="m-fact"><span class="m-fact-val">1</span><span class="m-fact-label">Комната</span></div>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-brand">Кронштадтский б-р, 24к3 · м. Водный стадион</div>
+  <a href="#contact" class="nav-cta">Написать →</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg" style="background-image: url('images/bedroom-1.jpg')"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-badge">Сдаётся · Москва · Без комиссии</div>
+    <h1 class="hero-title">Уютная 1-комн. квартира, <span>35 м²</span><br>с видом на парк и пруд</h1>
+    <p class="hero-sub">Свежий ремонт, гардеробная, большая застеклённая лоджия. Тихая, тёплая, с отличной звукоизоляцией.</p>
+    <div class="hero-address">Кронштадтский бульвар, 24к3</div>
+    <div class="hero-transport" aria-label="Транспортная доступность">
+      <span class="hero-chip"><strong>м. Водный стадион</strong>10 мин. на транспорте</span>
+      <span class="hero-chip"><strong>МЦК Коптево</strong>10 мин. пешком</span>
+      <span class="hero-chip"><strong>м. Водный стадион</strong>22 мин. пешком</span>
+    </div>
+    <div class="hero-price">
+      <span class="price-val">45 000 ₽</span>
+      <span class="price-note">/ месяц + счётчики (~4 000 ₽) + интернет</span>
+    </div>
+    <div class="hero-lease" aria-label="Основные условия аренды">
+      <span>Без комиссии</span>
+      <span>Напрямую от собственника</span>
+      <span>На длительный срок</span>
+    </div>
+    <div class="hero-stats">
+      <div class="stat"><span class="stat-val">35</span><span class="stat-label">м² общая</span></div>
+      <div class="stat"><span class="stat-val">19</span><span class="stat-label">м² жилая</span></div>
+      <div class="stat"><span class="stat-val">10</span><span class="stat-label">м² кухня</span></div>
+      <div class="stat"><span class="stat-val">1</span><span class="stat-label">комната</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="gallery">
+  <div class="section-tag" style="text-align:center; margin-bottom: 28px;">Фотографии</div>
+  <div class="gallery-grid">
+    <div class="photo photo-1" onclick="openLightbox('images/bedroom-1.jpg')">
+      <img src="images/bedroom-1.jpg" alt="Жилая комната с двуспальной кроватью" loading="lazy">
+    </div>
+    <div class="photo photo-2" onclick="openLightbox('images/living-1.jpg')">
+      <img src="images/living-1.jpg" alt="Рабочая зона у окна с выходом на лоджию" loading="lazy">
+    </div>
+    <div class="photo photo-3" onclick="openLightbox('images/bedroom-2.jpg')">
+      <img src="images/bedroom-2.jpg" alt="Зона хранения и кондиционер" loading="lazy">
+    </div>
+    <div class="photo" onclick="openLightbox('images/kitchen-1.jpg')">
+      <img src="images/kitchen-1.jpg" alt="Кухня с варочной панелью и стиральной машиной" loading="lazy">
+    </div>
+    <div class="photo" onclick="openLightbox('images/kitchen-2.jpg')">
+      <img src="images/kitchen-2.jpg" alt="Кухня — обеденная зона" loading="lazy">
+    </div>
+    <div class="photo" onclick="openLightbox('images/kitchen-3.jpg')">
+      <img src="images/kitchen-3.jpg" alt="Кухня с холодильником и духовым шкафом" loading="lazy">
+    </div>
+    <div class="photo" onclick="openLightbox('images/bathroom-2.jpg')">
+      <img src="images/bathroom-2.jpg" alt="Совмещённый санузел с ванной" loading="lazy">
+    </div>
+    <div class="photo" onclick="openLightbox('images/bathroom-3.jpg')">
+      <img src="images/bathroom-3.jpg" alt="Ванна" loading="lazy">
+    </div>
+    <div class="photo" onclick="openLightbox('images/bathroom-1.jpg')">
+      <img src="images/bathroom-1.jpg" alt="Санузел" loading="lazy">
+    </div>
+    <div class="photo" onclick="openLightbox('images/wardrobe-1.jpg')">
+      <img src="images/wardrobe-1.jpg" alt="Гардеробная — вешалки и стеллажи" loading="lazy">
+    </div>
+    <div class="photo" onclick="openLightbox('images/wardrobe-2.jpg')">
+      <img src="images/wardrobe-2.jpg" alt="Гардеробная — места для хранения" loading="lazy">
+    </div>
+    <div class="photo" onclick="openLightbox('images/wardrobe-3.jpg')">
+      <img src="images/wardrobe-3.jpg" alt="Гардеробная — органайзеры" loading="lazy">
+    </div>
+    <div class="photo" onclick="openLightbox('images/entry-1.jpg')">
+      <img src="images/entry-1.jpg" alt="Прихожая с вешалкой и обувницей" loading="lazy">
+    </div>
+    <div class="photo" onclick="openLightbox('images/entry-2.jpg')">
+      <img src="images/entry-2.jpg" alt="Прихожая — общий вид" loading="lazy">
+    </div>
+<div class="photo" onclick="openLightbox('images/neighborhood-pond-2.png')">
+      <img src="images/neighborhood-pond-2.png" alt="Вид на пруд и зелёную зону" loading="lazy">
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about-section">
+  <div class="about">
+    <div class="about-grid">
+      <div class="about-text">
+        <div class="section-tag">О квартире</div>
+        <h2 class="section-title">Уютная и светлая<br>1-комнатная квартира</h2>
+        <p>
+          Предлагается в аренду просторная и очень уютная 1-комнатная квартира
+          со свежим ремонтом, идеально подходящая для комфортного проживания
+          1–2 человек. Из окон — приятный вид на парк и пруд.
+        </p>
+        <p>
+          Планировка продумана и удобна: просторная жилая комната с двуспальной
+          кроватью и рабочим местом, отдельная вместительная гардеробная,
+          большая кухня 10 м² и совмещённый санузел с ванной. Большая
+          застеклённая лоджия с видом на пруд и парк.
+        </p>
+        <p>
+          Квартира тёплая, тихая, с отличной звукоизоляцией. В шаговой
+          доступности — парк, пруд, магазины и вся необходимая инфраструктура.
+        </p>
+        <p>
+          Сдаётся на длительный срок, предпочтительно без животных.
+          Без комиссии, напрямую от собственника.
+        </p>
+      </div>
+      <div class="specs-column">
+        <div class="specs-grid">
+          <div class="spec-card">
+            <div class="spec-icon"><span class="svg-icon"><svg><use href="#icon-area"></use></svg></span></div>
+            <div class="spec-val">35 м²</div>
+            <div class="spec-name">Общая площадь</div>
+          </div>
+          <div class="spec-card">
+            <div class="spec-icon"><span class="svg-icon"><svg><use href="#icon-bed"></use></svg></span></div>
+            <div class="spec-val">19 м²</div>
+            <div class="spec-name">Жилая комната</div>
+          </div>
+          <div class="spec-card">
+            <div class="spec-icon"><span class="svg-icon"><svg><use href="#icon-kitchen"></use></svg></span></div>
+            <div class="spec-val">10 м²</div>
+            <div class="spec-name">Просторная кухня</div>
+          </div>
+          <div class="spec-card">
+            <div class="spec-icon"><span class="svg-icon"><svg><use href="#icon-building"></use></svg></span></div>
+            <div class="spec-val">Лоджия</div>
+            <div class="spec-name">Застеклённая, с видом</div>
+          </div>
+        </div>
+        <div class="terms-grid">
+          <div class="term-card">
+            <span class="svg-icon"><svg><use href="#icon-safe"></use></svg></span>
+            <div class="term-label">Комиссия</div>
+            <div class="term-value">Нет</div>
+            <div class="term-note">Напрямую от собственника.</div>
+          </div>
+          <div class="term-card">
+            <span class="svg-icon"><svg><use href="#icon-area"></use></svg></span>
+            <div class="term-label">Цена</div>
+            <div class="term-value">45 000 ₽ / мес</div>
+            <div class="term-note">+ счётчики (~4 000 ₽) + интернет.</div>
+          </div>
+          <div class="term-card">
+            <span class="svg-icon"><svg><use href="#icon-building"></use></svg></span>
+            <div class="term-label">Срок аренды</div>
+            <div class="term-value">Длительный</div>
+            <div class="term-note">Идеально на год и более.</div>
+          </div>
+          <div class="term-card">
+            <span class="svg-icon"><svg><use href="#icon-safe"></use></svg></span>
+            <div class="term-label">Жильцы</div>
+            <div class="term-value">1–2 человека</div>
+            <div class="term-note">Предпочтительно без животных.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MOBILE SPECS (shown only on mobile) -->
+<div class="m-specs-wrap">
+  <div class="m-specs-title">О квартире</div>
+  <div class="m-specs-group">
+    <div class="m-specs-group-title">Параметры</div>
+    <div class="m-spec-row"><span class="m-spec-key">Тип</span><span class="m-spec-val">Квартира</span></div>
+    <div class="m-spec-row"><span class="m-spec-key">Комнат</span><span class="m-spec-val">1</span></div>
+    <div class="m-spec-row"><span class="m-spec-key">Общая площадь</span><span class="m-spec-val">35 м²</span></div>
+    <div class="m-spec-row"><span class="m-spec-key">Жилая площадь</span><span class="m-spec-val">19 м²</span></div>
+    <div class="m-spec-row"><span class="m-spec-key">Кухня</span><span class="m-spec-val">10 м²</span></div>
+    <div class="m-spec-row"><span class="m-spec-key">Лоджия</span><span class="m-spec-val">Большая, застеклённая</span></div>
+    <div class="m-spec-row"><span class="m-spec-key">Гардеробная</span><span class="m-spec-val">Есть</span></div>
+    <div class="m-spec-row"><span class="m-spec-key">Санузел</span><span class="m-spec-val">Совмещённый, с ванной</span></div>
+  </div>
+  <div class="m-specs-group">
+    <div class="m-specs-group-title">Условия аренды</div>
+    <div class="m-spec-row"><span class="m-spec-key">Цена</span><span class="m-spec-val">45 000 ₽/мес</span></div>
+    <div class="m-spec-row"><span class="m-spec-key">Залог</span><span class="m-spec-val">1 месяц</span></div>
+    <div class="m-spec-row"><span class="m-spec-key">Комиссия</span><span class="m-spec-val">Нет</span></div>
+    <div class="m-spec-row"><span class="m-spec-key">По счётчикам</span><span class="m-spec-val">Да (~4 000 ₽)</span></div>
+    <div class="m-spec-row"><span class="m-spec-key">Интернет</span><span class="m-spec-val">Дополнительно</span></div>
+    <div class="m-spec-row"><span class="m-spec-key">Срок аренды</span><span class="m-spec-val">Длительный</span></div>
+  </div>
+  <div class="m-specs-group">
+    <div class="m-specs-group-title">Правила</div>
+    <div class="m-spec-row"><span class="m-spec-key">Жильцов</span><span class="m-spec-val">1–2 человека</span></div>
+    <div class="m-spec-row"><span class="m-spec-key">Животные</span><span class="m-spec-val">Нежелательно</span></div>
+  </div>
+</div>
+
+<!-- AMENITIES -->
+<section class="amenities">
+  <div class="amenities-inner">
+    <div class="section-tag">Оснащение</div>
+    <h2 class="section-title">В Квартире есть</h2>
+    <ul class="amenities-list">
+      <li class="amenity"><span class="amenity-icon"><span class="svg-icon"><svg><use href="#icon-snow"></use></svg></span></span>Кондиционеры в кухне и комнате</li>
+      <li class="amenity"><span class="amenity-icon"><span class="svg-icon"><svg><use href="#icon-oven"></use></svg></span></span>Духовой шкаф и варочная панель</li>
+      <li class="amenity"><span class="amenity-icon"><span class="svg-icon"><svg><use href="#icon-fridge"></use></svg></span></span>Холодильник</li>
+      <li class="amenity"><span class="amenity-icon"><span class="svg-icon"><svg><use href="#icon-washer"></use></svg></span></span>Стиральная машина</li>
+      <li class="amenity"><span class="amenity-icon"><span class="svg-icon"><svg><use href="#icon-shower"></use></svg></span></span>Совмещённый санузел с ванной</li>
+      <li class="amenity amenity-hidden"><span class="amenity-icon"><span class="svg-icon"><svg><use href="#icon-bed"></use></svg></span></span>Двуспальная кровать</li>
+      <li class="amenity amenity-hidden"><span class="amenity-icon"><span class="svg-icon"><svg><use href="#icon-sofa"></use></svg></span></span>Удобное рабочее место</li>
+      <li class="amenity amenity-hidden"><span class="amenity-icon"><span class="svg-icon"><svg><use href="#icon-safe"></use></svg></span></span>Вместительная гардеробная</li>
+      <li class="amenity amenity-hidden"><span class="amenity-icon"><span class="svg-icon"><svg><use href="#icon-area"></use></svg></span></span>Много мест для хранения</li>
+      <li class="amenity amenity-hidden"><span class="amenity-icon"><span class="svg-icon"><svg><use href="#icon-building"></use></svg></span></span>Большая застеклённая лоджия</li>
+      <li class="amenity amenity-hidden"><span class="amenity-icon"><span class="svg-icon"><svg><use href="#icon-sound"></use></svg></span></span>Отличная звукоизоляция</li>
+      <li class="amenity amenity-hidden"><span class="amenity-icon"><span class="svg-icon"><svg><use href="#icon-warm"></use></svg></span></span>Тёплая и тихая</li>
+    </ul>
+    <button class="amenities-toggle" id="amenities-toggle" onclick="toggleAmenities()">Посмотреть всё <span>▾</span></button>
+  </div>
+</section>
+
+<!-- LOCATION -->
+<section>
+  <div class="location-inner">
+    <div class="section-tag">Расположение</div>
+    <h2 class="section-title">В самом центре жизни</h2>
+    <div class="location-grid">
+      <div>
+        <ul class="transport-list">
+          <li class="transport-item">
+            <span class="transport-badge metro-badge">М</span>
+            <span><strong>м. Водный стадион</strong> — 10 минут на транспорте</span>
+          </li>
+          <li class="transport-item">
+            <span class="transport-badge metro-badge">М</span>
+            <span><strong>м. Водный стадион</strong> — 22 минуты пешком</span>
+          </li>
+          <li class="transport-item">
+            <span class="transport-badge walk-badge"><span class="svg-icon"><svg><use href="#icon-walk"></use></svg></span></span>
+            <span><strong>МЦК Коптево</strong> — 10 минут пешком</span>
+          </li>
+          <li class="transport-item">
+            <span class="transport-badge walk-badge"><span class="svg-icon"><svg><use href="#icon-playground"></use></svg></span></span>
+            <span>Парк и пруд в шаговой доступности</span>
+          </li>
+        </ul>
+<p class="contact-sub" style="text-align:left; margin-top: 28px; margin-bottom: 0;">
+          Район обжитой и благоустроенный: рядом всё, что нужно для комфортной
+          жизни — магазины, аптеки, кафе, школы и детские сады. В двух шагах —
+          парк и Головинские пруды.
+        </p>
+      </div>
+      <div class="map-placeholder">
+        <iframe
+          src="https://www.openstreetmap.org/export/embed.html?bbox=37.502%2C55.837%2C37.522%2C55.857&layer=mapnik&marker=55.8475%2C37.5123"
+          title="Карта расположения — Кронштадтский бульвар, 24к3"
+          allowfullscreen>
+        </iframe>
+      </div>
+      <a href="https://maps.google.com/?q=Кронштадтский+бульвар+24к3+Москва" target="_blank" rel="noopener"
+         style="display:block;text-align:center;color:#4dabf7;font-size:14px;font-weight:600;text-decoration:none;margin-top:12px;">
+        Показать на карте в Google Maps →
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="contact-inner">
+    <div class="section-tag">Связь</div>
+    <h2 class="section-title">Готовы ответить<br>на вопросы</h2>
+    <p class="contact-sub">Пишите — ответим быстро. Покажем квартиру вживую в удобное время. Без комиссии, напрямую от собственника.</p>
+    <div class="contact-cards">
+      <a href="tel:+79161285265" class="contact-card">
+        <div class="contact-card-icon"><span class="svg-icon"><svg><use href="#icon-phone"></use></svg></span></div>
+        <div class="contact-card-label">Позвонить</div>
+        <div class="contact-card-value">+7 (916) 128-52-65</div>
+      </a>
+      <a href="https://t.me/born021056" class="contact-card tg" target="_blank" rel="noopener">
+        <div class="contact-card-icon"><span class="svg-icon"><svg><use href="#icon-telegram"></use></svg></span></div>
+        <div class="contact-card-label">Telegram</div>
+        <div class="contact-card-value">Написать</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  Кронштадтский бульвар, 24к3 · Москва &nbsp;·&nbsp; Вся информация носит информационный характер
+</footer>
+
+<!-- MOBILE CTA BAR (shown only on mobile) -->
+<div class="m-cta-bar">
+  <a href="tel:+79161285265" class="m-cta-call">
+    <svg viewBox="0 0 24 24"><path d="M7 4l3 3-2 3c1.2 2.4 3.1 4.3 5.5 5.5l3-2 3 3-2 3c-6.5-.2-12.3-6-12.5-12.5z"/></svg>
+    Позвонить
+  </a>
+  <a href="https://t.me/born021056" class="m-cta-write" target="_blank" rel="noopener">
+    <svg viewBox="0 0 24 24"><path d="M21 4L3 11l7 2 2 7z"/><path d="M10 13l11-9"/></svg>
+    Написать
+  </a>
+</div>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <div class="lightbox-close" onclick="closeLightbox()">×</div>
+  <button class="lightbox-prev" onclick="prevImage(event)">‹</button>
+  <img id="lightbox-img" src="" alt="">
+  <button class="lightbox-next" onclick="nextImage(event)">›</button>
+  <div class="lightbox-counter" id="lightbox-counter"></div>
+</div>
+
+<script>
+  const galleryImages = Array.from(document.querySelectorAll('.gallery .photo img'))
+    .map(img => ({ src: img.src, alt: img.alt }));
+
+  let currentIndex = 0;
+
+  function openLightbox(src) {
+    const idx = galleryImages.findIndex(i => i.src.endsWith(src.replace(/^.*\//, '')));
+    currentIndex = idx >= 0 ? idx : 0;
+    showLightboxImage();
+    const lb = document.getElementById('lightbox');
+    lb.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function showLightboxImage() {
+    const item = galleryImages[currentIndex];
+    document.getElementById('lightbox-img').src = item.src;
+    document.getElementById('lightbox-img').alt = item.alt;
+    document.getElementById('lightbox-counter').textContent =
+      (currentIndex + 1) + ' / ' + galleryImages.length;
+  }
+
+  function prevImage(e) {
+    if (e) e.stopPropagation();
+    currentIndex = (currentIndex - 1 + galleryImages.length) % galleryImages.length;
+    showLightboxImage();
+  }
+
+  function nextImage(e) {
+    if (e) e.stopPropagation();
+    currentIndex = (currentIndex + 1) % galleryImages.length;
+    showLightboxImage();
+  }
+
+  function closeLightbox() {
+    document.getElementById('lightbox').classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  document.addEventListener('keydown', e => {
+    if (!document.getElementById('lightbox').classList.contains('active')) return;
+    if (e.key === 'Escape') closeLightbox();
+    if (e.key === 'ArrowLeft') prevImage();
+    if (e.key === 'ArrowRight') nextImage();
+  });
+
+  // Touch swipe in lightbox
+  let touchStartX = 0;
+  const lb = document.getElementById('lightbox');
+  lb.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, { passive: true });
+  lb.addEventListener('touchend', e => {
+    const dx = e.changedTouches[0].clientX - touchStartX;
+    if (Math.abs(dx) > 50) { dx > 0 ? prevImage() : nextImage(); }
+  });
+
+  // Amenities toggle
+  function toggleAmenities() {
+    const hidden = document.querySelectorAll('.amenity-hidden');
+    const btn = document.getElementById('amenities-toggle');
+    const expanded = hidden[0].classList.contains('revealed');
+    hidden.forEach(el => el.classList.toggle('revealed', !expanded));
+    btn.innerHTML = expanded ? 'Посмотреть всё <span>▾</span>' : 'Скрыть <span>▴</span>';
+  }
+
+  // Mobile slider counter
+  const mSlider = document.getElementById('m-slider');
+  const mCounter = document.getElementById('m-slider-counter');
+  if (mSlider && mCounter) {
+    const totalSlides = mSlider.querySelectorAll('.m-slide').length;
+    mSlider.addEventListener('scroll', () => {
+      const idx = Math.round(mSlider.scrollLeft / mSlider.offsetWidth);
+      mCounter.textContent = (idx + 1) + ' из ' + totalSlides;
+    }, { passive: true });
+  }
+</script>
+
+</body>
+</html>
