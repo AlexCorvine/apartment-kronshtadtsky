@@ -1,8 +1,21 @@
-# Apartment Rent
+# Кронштадтский б-р, 24к3 — Аренда квартиры
 
-A static landing page for a Moscow apartment rental listing in ЖК Holland Park.
-The page highlights the apartment's key details, amenities, location advantages,
-photo gallery, price, and contact options for prospective tenants.
+Лендинг для сдачи 1-комнатной квартиры (35 м²) на Кронштадтском бульваре, 24к3, Москва.
 
-View the result on GitHub Pages:
-https://alexcorvine.github.io/apartment_rent/
+**Квартира:**
+- 1 комната, 35 м² общая / 19 м² жилая / 10 м² кухня
+- Свежий ремонт, гардеробная, большая застеклённая лоджия
+- Кондиционеры в комнате и кухне, духовой шкаф, стиральная машина, холодильник
+- Совмещённый санузел с ванной
+- Тихая, тёплая, отличная звукоизоляция
+
+**Транспорт:**
+- м. Водный стадион — 10 мин. на ОТ / 22 мин. пешком
+- МЦК Коптево — 10 мин. пешком
+
+**Условия:** 45 000 ₽/мес + счётчики, без комиссии, напрямую от собственника, длительный срок.
+
+---
+
+Лендинг доступен на GitHub Pages:
+https://alexcorvine.github.io/apartment-kronshtadtsky/
