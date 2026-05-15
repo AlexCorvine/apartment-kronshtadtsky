@@ -51,6 +51,52 @@
       color: var(--gold);
     }
 
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+
+    .nav-phone {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 16px;
+      border-radius: 50px;
+      border: 1px solid rgba(201, 168, 76, 0.45);
+      color: var(--cream);
+      font-size: 13px;
+      font-weight: 600;
+      text-decoration: none;
+      letter-spacing: 0.02em;
+      transition: border-color var(--transition), background var(--transition), color var(--transition);
+    }
+    .nav-phone-inner {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1px;
+      line-height: 1.15;
+    }
+    .nav-phone-name {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      color: var(--gold-light);
+      opacity: 0.92;
+    }
+    .nav-phone-num { font-size: 13px; font-weight: 600; letter-spacing: 0.02em; }
+    .nav-phone:hover .nav-phone-name {
+      opacity: 1;
+      color: var(--gold);
+    }
+    .nav-phone:hover {
+      border-color: var(--gold);
+      background: rgba(36, 48, 80, 0.55);
+      color: var(--white);
+    }
+
     .nav-cta {
       display: inline-flex;
       align-items: center;
@@ -868,10 +914,25 @@
         gap: 8px; padding: 14px; border-radius: 14px; font-size: 16px;
         font-weight: 700; text-decoration: none;
       }
-      .m-cta-call { background: #27ae60; color: #fff; }
+      .m-cta-call {
+        background: #27ae60;
+        color: #fff;
+        flex-direction: column;
+        gap: 2px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+      }
+      .m-cta-call-name {
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.04em;
+        line-height: 1.15;
+        opacity: 0.92;
+      }
+      .m-cta-call-label { font-size: 15px; font-weight: 700; line-height: 1.1; display: inline-flex; align-items: center; gap: 6px; }
       .m-cta-write { background: #2980b9; color: #fff; }
       .m-cta-bar svg { width: 18px; height: 18px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
-      .nav-cta { display: none; }
+      .nav-actions { display: none; }
     }
   </style>
 </head>
@@ -911,6 +972,7 @@
   <div class="m-slider" id="m-slider">
     <div class="m-slide" onclick="openLightbox('images/bedroom-1.png')"><img src="images/bedroom-1.png" alt="Спальня с двуспальной кроватью"></div>
     <div class="m-slide" onclick="openLightbox('images/living-1.png')"><img src="images/living-1.png" alt="Комната с ТВ, рабочим местом и лоджией"></div>
+    <div class="m-slide" onclick="openLightbox('images/balcony-1.png')"><img src="images/balcony-1.png" alt="Застеклённая лоджия"></div>
     <div class="m-slide" onclick="openLightbox('images/bedroom-2.png')"><img src="images/bedroom-2.png" alt="Спальня — кондиционер и лоджия"></div>
     <div class="m-slide" onclick="openLightbox('images/kitchen-1.png')"><img src="images/kitchen-1.png" alt="Кухня со стиральной машиной"></div>
     <div class="m-slide" onclick="openLightbox('images/kitchen-2.png')"><img src="images/kitchen-2.png" alt="Кухня — обеденная зона"></div>
@@ -923,7 +985,7 @@
     <div class="m-slide" onclick="openLightbox('images/entry-2.png')"><img src="images/entry-2.png" alt="Прихожая — общий вид"></div>
     <div class="m-slide" onclick="openLightbox('images/pond-view.png')"><img src="images/pond-view.png" alt="Вид на пруд и парк"></div>
   </div>
-  <div class="m-slider-counter" id="m-slider-counter">1 из 13</div>
+  <div class="m-slider-counter" id="m-slider-counter">1 из 14</div>
 </div>
 
 <!-- MOBILE INFO (shown only on mobile) -->
@@ -952,7 +1014,15 @@
 <!-- NAV -->
 <nav>
   <div class="nav-brand">Кронштадтский б-р, 24к3 · м. Водный стадион</div>
-  <a href="https://t.me/sanborov" class="nav-cta" target="_blank" rel="noopener">Написать →</a>
+  <div class="nav-actions">
+    <a href="tel:+79109637947" class="nav-phone">
+      <span class="nav-phone-inner">
+        <span class="nav-phone-name">Надежда</span>
+        <span class="nav-phone-num">+7 910 963-79-47</span>
+      </span>
+    </a>
+    <a href="https://t.me/sanborov" class="nav-cta" target="_blank" rel="noopener">Telegram →</a>
+  </div>
 </nav>
 
 <!-- HERO -->
@@ -997,22 +1067,23 @@
         <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/><path d="M11 8v6M8 11h6"/></svg>
         Открыть
       </div>
-      <div class="gallery-viewer-counter" id="gallery-counter">1 / 13</div>
+      <div class="gallery-viewer-counter" id="gallery-counter">1 / 14</div>
     </div>
     <div class="gallery-thumbs" id="gallery-thumbs">
       <div class="gallery-thumb active" onclick="setGalleryImage(0)"><img src="images/bedroom-1.png" alt="Спальня" loading="lazy"></div>
       <div class="gallery-thumb" onclick="setGalleryImage(1)"><img src="images/living-1.png" alt="Комната с ТВ" loading="lazy"></div>
-      <div class="gallery-thumb" onclick="setGalleryImage(2)"><img src="images/bedroom-2.png" alt="Спальня — лоджия" loading="lazy"></div>
-      <div class="gallery-thumb" onclick="setGalleryImage(3)"><img src="images/kitchen-1.png" alt="Кухня" loading="lazy"></div>
-      <div class="gallery-thumb" onclick="setGalleryImage(4)"><img src="images/kitchen-2.png" alt="Кухня — обеденная зона" loading="lazy"></div>
-      <div class="gallery-thumb" onclick="setGalleryImage(5)"><img src="images/kitchen-3.png" alt="Кухня с духовкой" loading="lazy"></div>
-      <div class="gallery-thumb" onclick="setGalleryImage(6)"><img src="images/bathroom-1.png" alt="Санузел с ванной" loading="lazy"></div>
-      <div class="gallery-thumb" onclick="setGalleryImage(7)"><img src="images/bathroom-2.png" alt="Санузел" loading="lazy"></div>
-      <div class="gallery-thumb" onclick="setGalleryImage(8)"><img src="images/bathroom-3.png" alt="Ванна" loading="lazy"></div>
-      <div class="gallery-thumb" onclick="setGalleryImage(9)"><img src="images/wardrobe-1.png" alt="Гардеробная" loading="lazy"></div>
-      <div class="gallery-thumb" onclick="setGalleryImage(10)"><img src="images/entry-1.png" alt="Прихожая" loading="lazy"></div>
-      <div class="gallery-thumb" onclick="setGalleryImage(11)"><img src="images/entry-2.png" alt="Прихожая" loading="lazy"></div>
-      <div class="gallery-thumb" onclick="setGalleryImage(12)"><img src="images/pond-view.png" alt="Вид на пруд" loading="lazy"></div>
+      <div class="gallery-thumb" onclick="setGalleryImage(2)"><img src="images/balcony-1.png" alt="Лоджия" loading="lazy"></div>
+      <div class="gallery-thumb" onclick="setGalleryImage(3)"><img src="images/bedroom-2.png" alt="Спальня — лоджия" loading="lazy"></div>
+      <div class="gallery-thumb" onclick="setGalleryImage(4)"><img src="images/kitchen-1.png" alt="Кухня" loading="lazy"></div>
+      <div class="gallery-thumb" onclick="setGalleryImage(5)"><img src="images/kitchen-2.png" alt="Кухня — обеденная зона" loading="lazy"></div>
+      <div class="gallery-thumb" onclick="setGalleryImage(6)"><img src="images/kitchen-3.png" alt="Кухня с духовкой" loading="lazy"></div>
+      <div class="gallery-thumb" onclick="setGalleryImage(7)"><img src="images/bathroom-1.png" alt="Санузел с ванной" loading="lazy"></div>
+      <div class="gallery-thumb" onclick="setGalleryImage(8)"><img src="images/bathroom-2.png" alt="Санузел" loading="lazy"></div>
+      <div class="gallery-thumb" onclick="setGalleryImage(9)"><img src="images/bathroom-3.png" alt="Ванна" loading="lazy"></div>
+      <div class="gallery-thumb" onclick="setGalleryImage(10)"><img src="images/wardrobe-1.png" alt="Гардеробная" loading="lazy"></div>
+      <div class="gallery-thumb" onclick="setGalleryImage(11)"><img src="images/entry-1.png" alt="Прихожая" loading="lazy"></div>
+      <div class="gallery-thumb" onclick="setGalleryImage(12)"><img src="images/entry-2.png" alt="Прихожая" loading="lazy"></div>
+      <div class="gallery-thumb" onclick="setGalleryImage(13)"><img src="images/pond-view.png" alt="Вид на пруд" loading="lazy"></div>
     </div>
   </div>
 </section>
@@ -1197,8 +1268,11 @@
 <!-- MOBILE CTA BAR (shown only on mobile) -->
 <div class="m-cta-bar">
   <a href="tel:+79109637947" class="m-cta-call">
-    <svg viewBox="0 0 24 24"><path d="M7 4l3 3-2 3c1.2 2.4 3.1 4.3 5.5 5.5l3-2 3 3-2 3c-6.5-.2-12.3-6-12.5-12.5z"/></svg>
-    Позвонить
+    <span class="m-cta-call-name">Надежда</span>
+    <span class="m-cta-call-label">
+      <svg viewBox="0 0 24 24"><path d="M7 4l3 3-2 3c1.2 2.4 3.1 4.3 5.5 5.5l3-2 3 3-2 3c-6.5-.2-12.3-6-12.5-12.5z"/></svg>
+      Позвонить
+    </span>
   </a>
   <a href="https://t.me/sanborov" class="m-cta-write" target="_blank" rel="noopener">
     <svg viewBox="0 0 24 24"><path d="M21 4L3 11l7 2 2 7z"/><path d="M10 13l11-9"/></svg>
@@ -1219,6 +1293,7 @@
   const galleryImages = [
     { src: 'images/bedroom-1.png',  alt: 'Спальня с двуспальной кроватью' },
     { src: 'images/living-1.png',   alt: 'Комната с ТВ, рабочим местом и лоджией' },
+    { src: 'images/balcony-1.png',  alt: 'Застеклённая лоджия' },
     { src: 'images/bedroom-2.png',  alt: 'Спальня — кондиционер и выход на лоджию' },
     { src: 'images/kitchen-1.png',  alt: 'Кухня со стиральной машиной' },
     { src: 'images/kitchen-2.png',  alt: 'Кухня — обеденная зона' },
